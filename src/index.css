@@ -37,6 +37,14 @@ header p {
   border: 1px solid #f3f3f3;
   border-radius: 10px;
   padding: 0 15px;
+  position: relative;
+}
+.search-block .clear {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  top: 14px;
+  right: 15px;
 }
 .search-block input {
   border: 0;
