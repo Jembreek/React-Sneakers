@@ -17,7 +17,7 @@ function Drawer({ onClose, onRemove, items = [], opened }) {
   const onClickOrder = async () => {
     try {
       setIsLoading(true);
-      const { data } = await axios.post('/orders', {
+      const { data } = await axios.post('https://648b278c17f1536d65ea7da5.mockapi.io/orders', {
         items: cartItems,
       });
       setOrderId(data.id);
@@ -26,7 +26,7 @@ function Drawer({ onClose, onRemove, items = [], opened }) {
 
       for (let i = 0; i < cartItems.length; i++) {
         const item = cartItems[i];
-        await axios.delete('/cart/' + item.id);
+        await axios.delete('https://648842c50e2469c038fd5b95.mockapi.io/cart/' + item.id);
         await delay(1000);
       }
     } catch (error) {
@@ -39,7 +39,7 @@ function Drawer({ onClose, onRemove, items = [], opened }) {
     <div className={`${styles.overlay} ${opened ? styles.overlayVisible : ''}`}>
       <div className={styles.drawer}>
         <h2 className="d-flex justify-between mb-30">
-          Корзина <img onClick={onClose} className="cu-p" src="img/btn-remove.svg" alt="Close" />
+          Корзина <img onClick={onClose} className="cu-p" src="/img/btn-remove.svg" alt="Close" />
         </h2>
 
         {items.length > 0 ? (
@@ -58,7 +58,7 @@ function Drawer({ onClose, onRemove, items = [], opened }) {
                   <img
                     onClick={() => onRemove(obj.id)}
                     className="removeBtn"
-                    src="img/btn-remove.svg"
+                    src="/img/btn-remove.svg"
                     alt="Remove"
                   />
                 </div>
@@ -78,7 +78,7 @@ function Drawer({ onClose, onRemove, items = [], opened }) {
                 </li>
               </ul>
               <button disabled={isLoading} onClick={onClickOrder} className="greenButton">
-                Оформить заказ <img src="img/arrow.svg" alt="Arrow" />
+                Оформить заказ <img src="/img/arrow.svg" alt="Arrow" />
               </button>
             </div>
           </div>
@@ -90,7 +90,7 @@ function Drawer({ onClose, onRemove, items = [], opened }) {
                 ? `Ваш заказ #${orderId} скоро будет передан курьерской доставке`
                 : 'Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.'
             }
-            image={isOrderComplete ? 'img/complete-order.jpg' : 'img/empty-cart.jpg'}
+            image={isOrderComplete ? '/img/complete-order.jpg' : '/img/empty-cart.jpg'}
           />
         )}
       </div>
